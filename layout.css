@@ -8,7 +8,7 @@ body{
   /* background-image: src("/img/background.png"); */
   height: 100%;
   color: var(--color-0);
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 #header{
@@ -458,23 +458,23 @@ body{
 /* ---------------------------- */
 @font-face {
   font-family: "cursive_en";
-  src: url("/폰트/Shadows_Into_Light/ShadowsIntoLight-Regular.ttf");
+  src: url("./폰트/Shadows_Into_Light/ShadowsIntoLight-Regular.ttf");
 }
 
 @font-face {
   font-family: "serif_en";
-  src: url("/폰트/Instrument_serif/InstrumentSerif-Regular.ttf");
+  src: url("./폰트/Instrument_serif/InstrumentSerif-Regular.ttf");
 }
 
 @font-face {
   font-family: "serif_kr";
-  src: url("/폰트/부크크/부크크명조/BookkMyungjo_Light.ttf");
+  src: url("./폰트/부크크/부크크명조/BookkMyungjo_Light.ttf");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "serif_kr";
-  src: url("/폰트/부크크/부크크명조/BookkMyungjo_Bold.ttf");
+  src: url("./폰트/부크크/부크크명조/BookkMyungjo_Bold.ttf");
   font-weight: 700;
 }
 /* ---------------------------- */
