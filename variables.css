@@ -1,0 +1,17 @@
+:root{
+  --color-0: #3A434A;
+  --color-1: #296090;
+  --color-2: #3386CF;
+  --color-2-40: rgba(51, 134, 207, 0.4);
+  --color-2-15: rgba(51, 134, 207, 0.15);
+  --color-2-0: rgba(51, 134, 207, 0);
+  --color-3: #A2D3FF;
+  --color-3-50: rgba(162, 211, 255, 0.5);
+  --color-3-50-filled: #C7E3FD;
+
+  --color-point: #E1FF00;
+
+  --color-white-30: rgba(255,255,255,0.3);
+  
+  --header-h: 80px;
+}
