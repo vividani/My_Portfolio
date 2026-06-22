@@ -1,9 +1,4 @@
 $(function(){
-  //로딩 애니메이션
-  $("#hero_textbox p").eq(0).fadeIn(500)
-  $("#hero_textbox p").eq(1).delay(800).fadeIn(500)
-  $("#hero_textbox p").eq(2).delay(1600).fadeIn(500)
-
 
   //로고 클릭
   $("#logo").click(function(){
@@ -30,38 +25,77 @@ $(function(){
     alert($(window).scrollTop())
   })
 
-  //스크롤 내릴 때
-  $(window).scroll(function(){
-    //copyright 원 애니메이션
-    if($(this).scrollTop() > 500){
-      $("#circle-background").addClass("left");
-      $("#circle-background2").addClass("right");
+  const lines = document.querySelectorAll('.underLine');
+  
 
-    }else{
-      $("#circle-background").removeClass("left");
-      $("#circle-background2").removeClass("right");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
 
-    }
+      const target = entry.target;
 
-    //프로필 위로 애니메이션
-    if($(this).scrollTop() > 1300){
-      $("#about-box").addClass("profileUp")
+      if(entry.isIntersecting){
 
-    }else{
-      $("#about-box").removeClass("profileUp")
+        // circle 영역
+        if(target.id === "circle-trigger"){
+          $("#circle-box").classList.add("show");
+          $("#copyright").classList.add("show");
+        }
 
-    }
+        // about 영역
+        if(target.id === "about-box"){
+          $(target).addClass("sectionUp");
 
-    //작업 애니메이션
-    if($(this).scrollTop() > 4000){
-      $("#works-box").addClass("profileUp");
-      
-    }else{
-      $("#works-box").removeClass("profileUp");
+          lines.forEach((el, i) => {
+            setTimeout(() => {
+              el.classList.add('active');
+            }, i * 500);
+          });
+        }
 
-    }
+        // works 영역
+        if(target.id === "works-box"){
+          $(target).addClass("sectionUp");
+        }
+
+        // contact 영역
+        if(target.id === "contact-box"){
+          $(target).addClass("sectionUp");
+        }
+
+      } else {
+
+        if(target.id === "circle-trigger"){
+          $("#circle1").removeClass("circleLeft");
+          $("#circle2").removeClass("circleRight");
+        }
+
+        if(target.id === "about-box"){
+          $(target).removeClass("sectionUp");
+          $(lines).removeClass('active');
+        }
+
+        if(target.id === "works-box"){
+          $(target).removeClass("sectionUp");
+        }
+
+        if(target.id === "contact-box"){
+          $(target).removeClass("sectionUp");
+        }
+
+      }
+
+    });
+  }, {
+    threshold: 0.3 // 30% 보이면 실행
+  });
+
+  // 관찰 대상 등록
+  observer.observe(document.querySelector("#about-box"));
+  observer.observe(document.querySelector("#works-box"));
+
+  // circle용 트리거 (보이지 않는 div 하나 만들어서 사용 추천)
+  observer.observe(document.querySelector("#circle-trigger"));
 
 
-  })
 
 })
