@@ -21,10 +21,6 @@ $(function(){
 
   // ----------------------------------------
 
-  $(".title").click(function(){
-    alert($(window).scrollTop())
-  })
-
   const lines = document.querySelectorAll('.underLine');
   
 
@@ -37,8 +33,10 @@ $(function(){
 
         // circle 영역
         if(target.id === "circle-trigger"){
-          $("#circle-box").classList.add("show");
-          $("#copyright").classList.add("show");
+          $("#circle-box").addClass("show");
+          setTimeout(() => {
+            $("#copyright").addClass("show");
+          }, 300);
         }
 
         // about 영역
@@ -47,7 +45,7 @@ $(function(){
 
           lines.forEach((el, i) => {
             setTimeout(() => {
-              el.classList.add('active');
+              el.classList.add("active");
             }, i * 500);
           });
         }
@@ -65,22 +63,22 @@ $(function(){
       } else {
 
         if(target.id === "circle-trigger"){
-          $("#circle1").removeClass("circleLeft");
-          $("#circle2").removeClass("circleRight");
+          $("#circle-box").removeClass("show");
+          $("#copyright").removeClass("show");
         }
 
-        if(target.id === "about-box"){
-          $(target).removeClass("sectionUp");
-          $(lines).removeClass('active');
-        }
+        // if(target.id === "about-box"){
+        //   $(target).removeClass("sectionUp");
+        //   $(lines).removeClass('active');
+        // }
 
-        if(target.id === "works-box"){
-          $(target).removeClass("sectionUp");
-        }
+        // if(target.id === "works-box"){
+        //   $(target).removeClass("sectionUp");
+        // }
 
-        if(target.id === "contact-box"){
-          $(target).removeClass("sectionUp");
-        }
+        // if(target.id === "contact-box"){
+        //   $(target).removeClass("sectionUp");
+        // }
 
       }
 
@@ -92,8 +90,9 @@ $(function(){
   // 관찰 대상 등록
   observer.observe(document.querySelector("#about-box"));
   observer.observe(document.querySelector("#works-box"));
+  observer.observe(document.querySelector("#contact-box"));
 
-  // circle용 트리거 (보이지 않는 div 하나 만들어서 사용 추천)
+  // circle용 트리거
   observer.observe(document.querySelector("#circle-trigger"));
 
 
