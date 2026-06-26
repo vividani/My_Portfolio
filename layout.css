@@ -9,6 +9,10 @@ body{
   height: 100%;
   color: var(--color-0);
   overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #header{
@@ -84,8 +88,7 @@ body{
 
 /* ---------------------------- */
 #hero-box{
-  background-color: orange;
-  min-height: 100vh;
+  /* background-color: orange; */
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -132,11 +135,10 @@ body{
 
 /* ---------------------------- */
 #circle-box{
-  background-color: grey;
+  /* background-color: grey; */
   position: relative;
   width: 100%;
   height: 50vw;
-  margin-top: 20vh;
 }
 
 #circle-trigger{
@@ -208,7 +210,6 @@ body{
 #copyright p{
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.8s ease;
 }
 
 #copyright.show p{
@@ -222,13 +223,13 @@ body{
 }
 
 /* --------------------------------------------- */
-.circleLeft{animation: circleLeft 1s forwards;}
+.circleLeft{animation: circleLeft 0.8s forwards;}
 
 @keyframes circleLeft{
   100%{transform: translateX(-80%); opacity: 1;}
 }
 
-.circleRight{animation: circleRight 1s forwards;}
+.circleRight{animation: circleRight 0.8s forwards;}
 
 @keyframes circleRight{
   100%{transform: translateX(-20%); opacity: 1;}
@@ -243,7 +244,6 @@ body{
   font-family: "serif_en";
   text-align: center;
   /* text-decoration: var(--color-2) solid underline 4px; */
-  margin: 120px auto;
 }
 /* .title:nth-of-type(2){
   position: relative;
@@ -256,12 +256,14 @@ body{
 
 /* -------------------------------- */
 #about-box{
-  background-color: yellow;
-  width: fit-content;
-  height: fit-content;
-  margin: 0px auto;
+  /* background-color: yellow; */
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(100px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
 }
 
 #profile-box{
@@ -276,7 +278,7 @@ body{
 .sectionUp{animation: sectionUp 0.6s forwards}
 
 @keyframes sectionUp{
-  100%{transform: translateY(-50px); opacity: 1;}
+  100%{transform: translateY(0px); opacity: 1;}
 }
 
 #profile{
@@ -307,12 +309,6 @@ body{
 }
 
 /* ---------------- */
-.line{
-  height: 20px;
-  position: absolute;
-  background-color: var(--color-3-50);
-  z-index: -1;
-}
 
 .underLine{
   background: linear-gradient(to top, var(--color-3) 50%, transparent 50%);
@@ -326,9 +322,8 @@ body{
 
 /* -------------------------------- */
 #tool-box{
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   width: 1000px;
-  margin: 0 auto;
   overflow: hidden;
 }
 #tool-box > p:first-of-type{
@@ -377,9 +372,8 @@ body{
 
 /* -------------------------------- */
 #contents-box{
-  background-color: olivedrab;
+  /* background-color: olivedrab; */
   width: 1000px;
-  margin: 0px auto;
 }
 
 .content-box{
@@ -426,62 +420,80 @@ body{
 /* -------------------------------- */
 #works-box{
   /* background-color: palegreen; */
-  width: 1500px;
-  height: 900px;
-  margin: 0px auto;
+  /* width: 1500px; */
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(100px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
 }
 
 #works{
   /* background-color: palevioletred; */
-  width: 1200px;
-  display: flex;
-  margin: 0 auto;
-  gap: 80px;
-  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(2, 440px);
+  column-gap: 40px;
+  grid-template-rows: repeat(4, 300px);
+  row-gap: 120px;
 }
-#works li{
+.work{
   /* background-color: grey; */
-  width: 300px;
-  height: 440px;
+  width: 440px;
+  height: 300px;
   overflow: hidden;
   box-shadow: 0px 0px 20px var(--color-2-40);
-  cursor: pointer;
   border-radius: 20px;
+  cursor: pointer;
 }
-#works img{
+.work img{
   width: 100%;
-  height: 100%;
 }
 
-/* ---------------------------- */
-.box{
-  margin-top: 20vh;
+#works ul{
+  line-height: 40px;
+  font-family: "serif_kr";
+  font-weight: 700;
+  font-size: 20px;
 }
+#works ul li{
+  font-weight: 400;
+  font-size: 16px;
+}
+
 /* -------------------------------- */
 #contact-box{
   /* background-color: green; */
-  width: fit-content;
-  height: fit-content;
-  margin: 120px auto;
+  margin-bottom: 10vh;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  
+  transition: all 1s ease;
+  transform: scale(0.95);
   opacity: 0;
-  transform: translateY(50px);
+}
+
+#contact-box.show{
+  opacity: 1;
+  transform: scale(1);
 }
 
 #text-box-2{
   /* background-color: rgb(159, 185, 156); */
-  margin-top: 54px;
-  font-size: 16px;
-  font-family: "serif_kr";
-}
-#text-box-2 p{
-  /* background-color: yellow; */
-  width: fit-content;
-  margin: 24px auto;
-}
-#text-box-2 p:last-child{
   font-size: 20px;
+  font-family: "serif_kr";
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#text-box-2 p:last-child{
   color: var(--color-1);
 }
 
@@ -489,15 +501,12 @@ body{
   background-color: var(--color-2);
   width: 500px;
   height: 3px;
-  margin: 60px auto;
 }
 
 #sns{
   width: 140px;
   height: 50px;
-  margin: 0 auto;
   display: flex;
-  align-items: center;
   gap: 32px;
 }
 #sns li{
@@ -505,6 +514,11 @@ body{
 }
 #sns img{
   width: 100%;
+}
+
+/* ---------------------------- */
+.box{
+  margin-top: 20vh;
 }
 /* ---------------------------- */
 @media (max-width: 1080px){

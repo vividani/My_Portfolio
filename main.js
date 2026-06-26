@@ -57,7 +57,7 @@ $(function(){
 
         // contact 영역
         if(target.id === "contact-box"){
-          $(target).addClass("sectionUp");
+          $(target).addClass("show");
         }
 
       } else {
@@ -67,18 +67,18 @@ $(function(){
           $("#copyright").removeClass("show");
         }
 
-        // if(target.id === "about-box"){
-        //   $(target).removeClass("sectionUp");
-        //   $(lines).removeClass('active');
-        // }
+        if(target.id === "about-box"){
+          // $(target).removeClass("sectionUp");
+          $(lines).removeClass('active');
+        }
 
         // if(target.id === "works-box"){
         //   $(target).removeClass("sectionUp");
         // }
 
-        // if(target.id === "contact-box"){
-        //   $(target).removeClass("sectionUp");
-        // }
+        if(target.id === "contact-box"){
+          $(target).removeClass("show");
+        }
 
       }
 
