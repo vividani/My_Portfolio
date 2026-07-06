@@ -1,100 +1,163 @@
-$(function(){
 
-  //로고 클릭
-  $("#logo").click(function(){
-    $("html").animate({"scrollTop":"0"}, 1000, "easeOutQuint")
-  })
+document.addEventListener("DOMContentLoaded", () => {
+
+  const logo = document.querySelector("#logo");
+  const circleBox = document.querySelector("#circle-box");
+  const circleTrigger = document.querySelector("#circle-trigger");
+  const copyright = document.querySelector("#copyright");
+  const aboutBox = document.querySelector("#about-box");
+  const worksBox = document.querySelector("#works-box");
+  const contactBox = document.querySelector("#contact-box");
+
+  const headerHeight = document.querySelector("#header").offsetHeight;
+  const navItems = document.querySelectorAll("#nav li");
+
+  // ========================
+  // Click logo
+  // ========================
+  logo.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
   
-  //네비게이션 클릭
-  $("#nav li").eq(0).click(function(){
-    $("html").animate({"scrollTop":"0"}, 1000, "easeOutQuint")
-  })
-  $("#nav li").eq(1).click(function(){
-    $("html").animate({"scrollTop":"1530"}, 1000, "easeOutQuint")
-  })
-  $("#nav li").eq(2).click(function(){
-    $("html").animate({"scrollTop":"3930"}, 1000, "easeOutQuint")
-  })
-  $("#nav li").eq(3).click(function(){
-    $("html").animate({"scrollTop":"4950"}, 1000, "easeOutQuint")
-  })
+  // ========================
+  // Navigation
+  // ========================
+  const section = [
+    null,
+    "#about-box",
+    "#works-box",
+    "#contact-box"
+  ];
 
-  // ----------------------------------------
+  navItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      const top =
+        index === 0
+          ? 0
+          : document.querySelector(section[index]).offsetTop - headerHeight;
 
+      window.scrollTo({
+        top,
+        behavior: "smooth"
+      });
+    });
+  });
+
+
+  // ========================
+  // Observer
+  // ========================
   const lines = document.querySelectorAll('.underLine');
-  
 
   const observer = new IntersectionObserver((entries) => {
+
     entries.forEach(entry => {
 
       const target = entry.target;
 
       if(entry.isIntersecting){
 
-        // circle 영역
-        if(target.id === "circle-trigger"){
-          $("#circle-box").addClass("show");
-          setTimeout(() => {
-            $("#copyright").addClass("show");
-          }, 300);
-        }
+        switch (target.id) {
+          case "circle-trigger" :
 
-        // about 영역
-        if(target.id === "about-box"){
-          $(target).addClass("sectionUp");
+            circleBox.classList.add("show");
 
-          lines.forEach((el, i) => {
             setTimeout(() => {
-              el.classList.add("active");
-            }, i * 500);
-          });
-        }
 
-        // works 영역
-        if(target.id === "works-box"){
-          $(target).addClass("sectionUp");
-        }
+              copyright.classList.add("show");
 
-        // contact 영역
-        if(target.id === "contact-box"){
-          $(target).addClass("show");
+            }, 300);
+
+            break;
+          
+          case "about-box" :
+
+            target.classList.add("sectionUp");
+
+            lines.forEach((line, i) => {
+
+              setTimeout(() => {
+
+                line.classList.add("active");
+
+              }, i * 500);
+
+            });
+
+            break;
+          
+          case "works-box" :
+
+            target.classList.add("sectionUp");
+
+            break;
+
+          case "contact-box" :
+
+            target.classList.add("show");
+
+            break;
         }
+        
 
       } else {
 
-        if(target.id === "circle-trigger"){
-          $("#circle-box").removeClass("show");
-          $("#copyright").removeClass("show");
-        }
+        switch (target.id) {
+          case "circle-trigger" :
 
-        if(target.id === "about-box"){
-          // $(target).removeClass("sectionUp");
-          $(lines).removeClass('active');
-        }
+            circleBox.classList.remove("show");
 
-        // if(target.id === "works-box"){
-        //   $(target).removeClass("sectionUp");
-        // }
+            copyright.classList.remove("show");
 
-        if(target.id === "contact-box"){
-          $(target).removeClass("show");
+            break;
+          
+          case "about-box" :
+
+            // target.classList.remove("sectionUp");
+
+            lines.forEach(line => {
+
+              line.classList.remove("active");
+
+            });
+
+            break;
+
+          // case "work-box" :
+
+          //   target.classList.remove("sectionUp");
+
+          //   break;
+
+          case "contact-box" :
+
+            target.classList.remove("show");
+
+            break;
         }
 
       }
 
     });
+
   }, {
     threshold: 0.3 // 30% 보이면 실행
   });
 
-  // 관찰 대상 등록
-  observer.observe(document.querySelector("#about-box"));
-  observer.observe(document.querySelector("#works-box"));
-  observer.observe(document.querySelector("#contact-box"));
+
+  // ========================
+  // Observe
+  // ========================
+
+  // 관찰 대상
+  observer.observe(aboutBox);
+  observer.observe(worksBox);
+  observer.observe(contactBox);
 
   // circle용 트리거
-  observer.observe(document.querySelector("#circle-trigger"));
-
-
+  observer.observe(circleTrigger);
 
 })
